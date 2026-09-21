@@ -1,0 +1,170 @@
+/* =========================================================================
+   GymLogFX stylesheet
+   -------------------------------------------------------------------------
+   Two themes live in one file. Everything outside a ".dark" scope is the
+   light theme (the default). When dark mode is toggled on, ThemeManager
+   adds a "dark" style class to whatever Parent is the Scene's current
+   root; every rule below scoped under ".dark" then applies on top of it.
+   ========================================================================= */
+
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Login screen                                                           */
+/* ---------------------------------------------------------------------- */
+
+.login-screen {
+    -fx-background-color: #eef1f5;
+}
+
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #dcdfe4;
+    -fx-border-width: 1;
+    -fx-padding: 36;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 24, 0, 0, 6);
+}
+
+.login-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.login-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #8a8f98;
+}
+
+.toggle-link {
+    -fx-text-fill: #3f7fbf;
+    -fx-cursor: hand;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Buttons                                                                 */
+/* ---------------------------------------------------------------------- */
+
+.primary-button {
+    -fx-background-color: #3f7fbf;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 9 20 9 20;
+}
+.primary-button:hover   { -fx-background-color: #35699f; }
+.primary-button:pressed { -fx-background-color: #2b567f; }
+
+.dark-toggle {
+    -fx-background-color: transparent;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-padding: 5 12 5 12;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-border-color: #c8c8c8;
+}
+.dark-toggle:hover { -fx-background-color: rgba(0, 0, 0, 0.08); }
+
+.logout-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #c0392b;
+    -fx-text-fill: #c0392b;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+.logout-button:hover { -fx-background-color: #c0392b; -fx-text-fill: white; }
+
+/* ---------------------------------------------------------------------- */
+/* Status bar / small labels                                              */
+/* ---------------------------------------------------------------------- */
+
+.status-bar {
+    -fx-background-color: #eeeeee;
+    -fx-border-color: #d0d0d0;
+    -fx-border-width: 1 0 0 0;
+}
+
+.status-label {
+    -fx-text-fill: #666666;
+    -fx-font-size: 11px;
+}
+
+.welcome-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #444444;
+}
+
+.error-label {
+    -fx-text-fill: #c0392b;
+    -fx-font-weight: bold;
+}
+
+.summary-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 15 15 15;
+}
+
+.loading-label {
+    -fx-text-fill: #888888;
+    -fx-font-style: italic;
+}
+
+/* =========================================================================
+   Dark theme
+   -------------------------------------------------------------------------
+   Setting -fx-base / -fx-background / -fx-control-inner-background on the
+   root cascades a dark palette through most built-in Modena controls
+   (buttons, text fields, tables, lists, tabs, spinners...) for free. The
+   rules below add explicit overrides for the handful of things Modena
+   doesn't repaint automatically from those variables: plain Labels,
+   charts, and this app's own custom style classes.
+   ========================================================================= */
+
+.root.dark {
+    -fx-base: #2b2b2b;
+    -fx-background: #2b2b2b;
+    -fx-control-inner-background: #3c3f41;
+    -fx-accent: #5b9bd5;
+}
+
+.dark .label {
+    -fx-text-fill: #e6e6e6;
+}
+
+.dark.login-screen {
+    -fx-background-color: #1c1c1c;
+}
+
+.dark .login-card {
+    -fx-background-color: #333333;
+    -fx-border-color: #4a4a4a;
+}
+.dark .login-title    { -fx-text-fill: #f2f2f2; }
+.dark .login-subtitle { -fx-text-fill: #aaaaaa; }
+
+.dark .status-bar {
+    -fx-background-color: #1f1f1f;
+    -fx-border-color: #3a3a3a;
+}
+.dark .status-label   { -fx-text-fill: #bbbbbb; }
+.dark .welcome-label  { -fx-text-fill: #dddddd; }
+.dark .loading-label  { -fx-text-fill: #999999; }
+.dark .summary-label  { -fx-text-fill: #e6e6e6; }
+.dark .error-label    { -fx-text-fill: #ff6b6b; }
+.dark .dark-toggle     { -fx-border-color: #555555; }
+
+.dark .chart-plot-background      { -fx-background-color: #2b2b2b; }
+.dark .chart-vertical-grid-lines  { -fx-stroke: #444444; }
+.dark .chart-horizontal-grid-lines{ -fx-stroke: #444444; }
+.dark .axis                       { -fx-tick-label-fill: #cccccc; }
+.dark .axis-label                 { -fx-text-fill: #cccccc; }
+.dark .chart-title                { -fx-text-fill: #e6e6e6; }
+.dark .chart-legend                { -fx-text-fill: #e6e6e6; }

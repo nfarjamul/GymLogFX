@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  Login / create-account screen.
+  Root is a StackPane so the login card can be centered over a full-bleed
+  background regardless of window size. Controller: com.gymlog.ui.LoginController.
+-->
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.gymlog.ui.LoginController"
+           styleClass="login-screen">
+
+    <VBox fx:id="card" alignment="CENTER" spacing="14" maxWidth="360" maxHeight="-Infinity"
+          styleClass="login-card">
+
+        <HBox fx:id="themeToggleBox" alignment="CENTER_RIGHT"/>
+
+        <Label text="GymLogFX" styleClass="login-title"/>
+        <Label fx:id="subtitleLabel" text="Log in to your workout log" styleClass="login-subtitle"/>
+
+        <VBox spacing="10">
+            <padding>
+                <Insets top="8" bottom="4"/>
+            </padding>
+            <TextField fx:id="usernameField" promptText="Username"/>
+            <PasswordField fx:id="passwordField" promptText="Password"/>
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm password"
+                           managed="false" visible="false"/>
+        </VBox>
+
+        <Label fx:id="errorLabel" styleClass="error-label" wrapText="true" maxWidth="320"/>
+
+        <Button fx:id="actionButton" text="Log In" styleClass="primary-button"
+                maxWidth="Infinity" defaultButton="true"/>
+
+        <Hyperlink fx:id="modeToggleLink" text="New here? Create an account" styleClass="toggle-link"/>
+
+    </VBox>
+</StackPane>
