@@ -30,20 +30,20 @@ public class ApiService {
     // THREAD POOL: Fixed pool of 4 threads for concurrent HTTP requests
     // This demonstrates Thread Pool usage for I/O-bound operations
     private static final ExecutorService HTTP_THREAD_POOL =
-        Executors.newFixedThreadPool(4, r -> {
-            Thread t = new Thread(r, "ApiService-HTTP-Worker");
-            t.setDaemon(true); // daemon threads shut down with the JVM
-            return t;
-        });
+            Executors.newFixedThreadPool(4, r -> {
+                Thread t = new Thread(r, "ApiService-HTTP-Worker");
+                t.setDaemon(true); // daemon threads shut down with the JVM
+                return t;
+            });
 
     private final HttpClient httpClient;
     private final ObjectMapper objectMapper;
 
     public ApiService() {
         this.httpClient = HttpClient.newBuilder()
-            .connectTimeout(Duration.ofSeconds(10))
-            .executor(HTTP_THREAD_POOL)  // Use our thread pool for async HTTP
-            .build();
+                .connectTimeout(Duration.ofSeconds(10))
+                .executor(HTTP_THREAD_POOL)  // Use our thread pool for async HTTP
+                .build();
         this.objectMapper = new ObjectMapper();
     }
 
@@ -58,28 +58,59 @@ public class ApiService {
         return CompletableFuture.supplyAsync(() -> {
             List<String> quotes = new ArrayList<>();
             try {
+                // Free public quotes API (ZenQuotes) returning JSON array of quotes
                 HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://api.quotable.io/quotes/random?limit=5&tags=inspirational"))
-                    .timeout(Duration.ofSeconds(8))
-                    .GET()
-                    .build();
+                        .uri(URI.create("https://zenquotes.io/api/quotes"))
+                        .timeout(Duration.ofSeconds(6))
+                        .header("Accept", "application/json")
+                        .GET()
+                        .build();
 
                 HttpResponse<String> response = httpClient.send(request,
-                    HttpResponse.BodyHandlers.ofString());
+                        HttpResponse.BodyHandlers.ofString());
 
                 if (response.statusCode() == 200) {
                     // JSON PARSING: Parse array of quote objects using Jackson
                     JsonNode array = objectMapper.readTree(response.body());
-                    for (JsonNode obj : array) {
-                        String content = obj.get("content").asText();
-                        String author  = obj.get("author").asText();
-                        quotes.add("\"" + content + "\" \u2014 " + author);
+                    if (array.isArray()) {
+                        int count = 0;
+                        for (JsonNode obj : array) {
+                            if (count >= 5) break;
+
+                            String content = "";
+                            if (obj.has("q")) {
+                                content = obj.get("q").asText();
+                            } else if (obj.has("content")) {
+                                content = obj.get("content").asText();
+                            }
+
+                            String author = "Unknown";
+                            if (obj.has("a")) {
+                                author = obj.get("a").asText();
+                            } else if (obj.has("author")) {
+                                author = obj.get("author").asText();
+                            }
+
+                            if (!content.isBlank()) {
+                                quotes.add("\"" + content + "\" \u2014 " + author);
+                                count++;
+                            }
+                        }
                     }
-                } else {
+                }
+
+                if (quotes.isEmpty()) {
                     quotes.addAll(getFallbackQuotes());
                 }
             } catch (Exception e) {
-                System.out.println("API call failed, using fallback quotes: " + e.getMessage());
+                String cause = e.getMessage();
+                if (cause == null && e.getCause() != null) {
+                    cause = e.getCause().getMessage();
+                }
+                if (cause == null) {
+                    cause = e.getClass().getSimpleName();
+                }
+                System.out.println("API call failed, using fallback quotes: " + cause);
                 quotes.addAll(getFallbackQuotes());
             }
             return quotes;
@@ -97,13 +128,13 @@ public class ApiService {
             List<String> tips = new ArrayList<>();
             try {
                 HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://jsonplaceholder.typicode.com/posts?_limit=5"))
-                    .timeout(Duration.ofSeconds(8))
-                    .GET()
-                    .build();
+                        .uri(URI.create("https://jsonplaceholder.typicode.com/posts?_limit=5"))
+                        .timeout(Duration.ofSeconds(8))
+                        .GET()
+                        .build();
 
                 HttpResponse<String> response = httpClient.send(request,
-                    HttpResponse.BodyHandlers.ofString());
+                        HttpResponse.BodyHandlers.ofString());
 
                 if (response.statusCode() == 200) {
                     // JSON PARSING: Parse array of post objects \u2192 adapt as tips
@@ -116,7 +147,8 @@ public class ApiService {
                     tips.addAll(getDefaultTips());
                 }
             } catch (Exception e) {
-                System.out.println("Exercise tips API failed: " + e.getMessage());
+                String cause = e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName();
+                System.out.println("Exercise tips API failed: " + cause);
                 tips.addAll(getDefaultTips());
             }
             return tips;
@@ -156,21 +188,21 @@ public class ApiService {
 
     private List<String> getFallbackQuotes() {
         return List.of(
-            "\"The only bad workout is the one that didn't happen.\" \u2014 Unknown",
-            "\"Train insane or remain the same.\" \u2014 Jillian Michaels",
-            "\"Your body can stand almost anything. It's your mind you have to convince.\" \u2014 Unknown",
-            "\"Success starts with self-discipline.\" \u2014 Unknown",
-            "\"No pain, no gain.\" \u2014 Jane Fonda"
+                "\"The only bad workout is the one that didn't happen.\" \u2014 Unknown",
+                "\"Train insane or remain the same.\" \u2014 Jillian Michaels",
+                "\"Your body can stand almost anything. It's your mind you have to convince.\" \u2014 Unknown",
+                "\"Success starts with self-discipline.\" \u2014 Unknown",
+                "\"No pain, no gain.\" \u2014 Jane Fonda"
         );
     }
 
     private List<String> getDefaultTips() {
         return List.of(
-            "\uD83D\uDCAA Tip: Progressive overload is key to muscle growth",
-            "\uD83D\uDCAA Tip: Ensure 7-9 hours of sleep for optimal recovery",
-            "\uD83D\uDCAA Tip: Protein intake should be ~1g per pound of bodyweight",
-            "\uD83D\uDCAA Tip: Warm up properly to prevent injury",
-            "\uD83D\uDCAA Tip: Stay hydrated during your workout"
+                "\uD83D\uDCAA Tip: Progressive overload is key to muscle growth",
+                "\uD83D\uDCAA Tip: Ensure 7-9 hours of sleep for optimal recovery",
+                "\uD83D\uDCAA Tip: Protein intake should be ~1g per pound of bodyweight",
+                "\uD83D\uDCAA Tip: Warm up properly to prevent injury",
+                "\uD83D\uDCAA Tip: Stay hydrated during your workout"
         );
     }
 
