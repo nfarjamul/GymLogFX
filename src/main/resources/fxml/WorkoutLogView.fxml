@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gymlogfx.controller.WorkoutLogController"
+            styleClass="main-container">
+
+    <top>
+        <VBox spacing="4" styleClass="main-container">
+            <padding><Insets top="24" right="24" bottom="12" left="24"/></padding>
+            <Label text="📝 Log Workout" styleClass="title-label"/>
+            <Label text="Record your sets and track progressive overload"
+                   styleClass="subtitle-label"/>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="20" styleClass="main-container">
+            <padding><Insets top="0" right="24" bottom="24" left="24"/></padding>
+
+            <!-- Log Entry Form -->
+            <VBox styleClass="card" spacing="16" prefWidth="380" minWidth="300">
+                <Label text="New Entry" styleClass="title-label"
+                       style="-fx-font-size: 18px;"/>
+
+                <VBox spacing="6">
+                    <Label text="Exercise" styleClass="subtitle-label"/>
+                    <ComboBox fx:id="exerciseCombo"
+                              promptText="Select Exercise"
+                              prefWidth="340"/>
+                </VBox>
+
+                <HBox spacing="12">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="Date" styleClass="subtitle-label"/>
+                        <DatePicker fx:id="workoutDate" prefWidth="160"/>
+                    </VBox>
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="Weight (kg)" styleClass="subtitle-label"/>
+                        <TextField fx:id="weightField"
+                                   promptText="0.0"
+                                   styleClass="text-field-dark"
+                                   prefWidth="160"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="12">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="Sets" styleClass="subtitle-label"/>
+                        <Spinner fx:id="setsSpinner" min="1" max="20"
+                                 initialValue="3" prefWidth="160"/>
+                    </VBox>
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="Reps" styleClass="subtitle-label"/>
+                        <Spinner fx:id="repsSpinner" min="1" max="100"
+                                 initialValue="10" prefWidth="160"/>
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="6">
+                    <Label text="Notes" styleClass="subtitle-label"/>
+                    <TextArea fx:id="notesArea"
+                              promptText="Optional notes..."
+                              prefHeight="80"
+                              styleClass="text-field-dark"
+                              wrapText="true"/>
+                </VBox>
+
+                <Label fx:id="oneRmLabel" text="Estimated 1RM: -"
+                       styleClass="accent-label"/>
+
+                <HBox spacing="12">
+                    <Button text="LOG WORKOUT" styleClass="primary-button"
+                            HBox.hgrow="ALWAYS" prefWidth="200"
+                            onAction="#handleLogWorkout"/>
+                    <Button text="Clear" styleClass="secondary-button"
+                            onAction="#clearForm"/>
+                </HBox>
+
+                <Label fx:id="statusLabel" text="" styleClass="accent-label"/>
+            </VBox>
+
+            <!-- Workout List -->
+            <VBox styleClass="card" spacing="12" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Label text="Today's Workout" styleClass="title-label"
+                           style="-fx-font-size: 18px;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="🗑 Delete" styleClass="secondary-button"
+                            onAction="#handleDelete"/>
+                    <Button text="✏ Edit" styleClass="secondary-button"
+                            onAction="#handleEdit"/>
+                </HBox>
+
+                <TableView fx:id="workoutTable"
+                           VBox.vgrow="ALWAYS"
+                           styleClass="table-view">
+                    <columns>
+                        <TableColumn fx:id="colExercise" text="Exercise" prefWidth="150"/>
+                        <TableColumn fx:id="colDate" text="Date" prefWidth="100"/>
+                        <TableColumn fx:id="colWeight" text="Weight" prefWidth="80"/>
+                        <TableColumn fx:id="colSets" text="Sets" prefWidth="60"/>
+                        <TableColumn fx:id="colReps" text="Reps" prefWidth="60"/>
+                        <TableColumn fx:id="colNotes" text="Notes" prefWidth="150"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

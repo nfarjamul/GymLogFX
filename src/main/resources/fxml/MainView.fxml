@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gymlogfx.controller.MainController"
+            prefWidth="1280" prefHeight="800"
+            styleClass="main-container">
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="220" spacing="4"
+              BorderPane.alignment="CENTER">
+            <padding><Insets top="20" right="8" bottom="20" left="8"/></padding>
+
+            <!-- App Logo -->
+            <Label text="🏥 GymLogFX" styleClass="gym-logo"
+                   style="-fx-font-size: 22px; -fx-padding: 8 12;"/>
+            <Label fx:id="userGreeting" text="Welcome!"
+                   styleClass="subtitle-label"
+                   style="-fx-padding: 0 12 12 12;"/>
+
+            <Separator/>
+
+            <!-- Navigation Buttons -->
+            <Button fx:id="btnDashboard" text="🏠  Dashboard"
+                    styleClass="nav-button, nav-button-active"
+                    prefWidth="204"
+                    onAction="#showDashboard"/>
+
+            <Button fx:id="btnLog" text="📝  Log Workout"
+                    styleClass="nav-button" prefWidth="204"
+                    onAction="#showWorkoutLog"/>
+
+            <Button fx:id="btnHistory" text="📅  History"
+                    styleClass="nav-button" prefWidth="204"
+                    onAction="#showHistory"/>
+
+            <Button fx:id="btnCharts" text="📊  Progress Charts"
+                    styleClass="nav-button" prefWidth="204"
+                    onAction="#showCharts"/>
+
+            <Button fx:id="btnRoutines" text="📋  Routines"
+                    styleClass="nav-button" prefWidth="204"
+                    onAction="#showRoutines"/>
+
+            <Button fx:id="btnEvaluator" text="⭐  Evaluator Demo"
+                    styleClass="nav-button" prefWidth="204"
+                    onAction="#showEvaluatorDemo"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Separator/>
+
+            <!-- Theme Toggle -->
+            <HBox alignment="CENTER" spacing="8" style="-fx-padding: 8;">
+                <Label text="🌙" style="-fx-font-size: 16px;"/>
+                <Label text="Dark Mode" styleClass="subtitle-label"/>
+                <ToggleButton fx:id="themeToggle" text="ON"
+                              selected="true"
+                              onAction="#toggleTheme"/>
+            </HBox>
+
+            <Button text="🔐  Logout"
+                    styleClass="secondary-button"
+                    prefWidth="204"
+                    onAction="#handleLogout"/>
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT AREA -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="main-container">
+            <!-- Content is swapped dynamically by MainController -->
+        </StackPane>
+    </center>
+</BorderPane>

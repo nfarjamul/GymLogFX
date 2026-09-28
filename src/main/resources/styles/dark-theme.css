@@ -1,0 +1,259 @@
+/* GymLogFX Dark Theme */
+.root {
+    -fx-background-color: #1a1a2e;
+    -fx-text-fill: #e0e0e0;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.main-container {
+    -fx-background-color: #1a1a2e;
+}
+
+.sidebar {
+    -fx-background-color: #16213e;
+    -fx-border-color: #0f3460;
+    -fx-border-width: 0 2 0 0;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #a0a0c0;
+    -fx-font-size: 14px;
+    -fx-padding: 12 20;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.nav-button:hover {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: #e94560;
+}
+
+.nav-button-active {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: #e94560;
+    -fx-font-weight: bold;
+}
+
+.card {
+    -fx-background-color: #16213e;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #0f3460;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 4);
+    -fx-padding: 16;
+}
+
+.primary-button {
+    -fx-background-color: linear-gradient(to right, #e94560, #c62a47);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 10 24;
+    -fx-effect: dropshadow(gaussian, rgba(233,69,96,0.4), 8, 0, 0, 2);
+}
+
+.primary-button:hover {
+    -fx-background-color: linear-gradient(to right, #ff5577, #e94560);
+    -fx-effect: dropshadow(gaussian, rgba(233,69,96,0.6), 12, 0, 0, 4);
+}
+
+.secondary-button {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: #e0e0e0;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 10 24;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #1a4a7a;
+}
+
+.text-field-dark {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: #e0e0e0;
+    -fx-prompt-text-fill: #6080a0;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #1a5080;
+    -fx-border-width: 1;
+    -fx-padding: 8 12;
+}
+
+.text-field-dark:focused {
+    -fx-border-color: #e94560;
+}
+
+.title-label {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.subtitle-label {
+    -fx-text-fill: #a0a0c0;
+    -fx-font-size: 14px;
+}
+
+.accent-label {
+    -fx-text-fill: #e94560;
+    -fx-font-weight: bold;
+}
+
+.table-view {
+    -fx-background-color: #16213e;
+    -fx-table-cell-border-color: #0f3460;
+}
+
+.table-view .column-header {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: #e94560;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: #16213e;
+    -fx-text-fill: #e0e0e0;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #0f3460;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #1a2a4a;
+}
+
+.chart-plot-background {
+    -fx-background-color: #16213e;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: #0f3460;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #0f3460;
+}
+
+.axis {
+    -fx-tick-label-fill: #a0a0c0;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #0f3460;
+    -fx-background-radius: 4;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: linear-gradient(to right, #e94560, #ff7700);
+    -fx-background-radius: 4;
+}
+
+.list-view {
+    -fx-background-color: #16213e;
+    -fx-border-color: #0f3460;
+}
+
+.list-cell {
+    -fx-background-color: #16213e;
+    -fx-text-fill: #e0e0e0;
+}
+
+.list-cell:selected {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: #e94560;
+}
+
+.combo-box {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: #e0e0e0;
+}
+
+.menu-bar {
+    -fx-background-color: #16213e;
+}
+
+.menu {
+    -fx-text-fill: #e0e0e0;
+}
+
+.menu-item {
+    -fx-background-color: #16213e;
+    -fx-text-fill: #e0e0e0;
+}
+
+.menu-item:hover {
+    -fx-background-color: #0f3460;
+}
+
+.separator {
+    -fx-background-color: #0f3460;
+}
+
+.scroll-bar {
+    -fx-background-color: #1a1a2e;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #0f3460;
+    -fx-background-radius: 4;
+}
+
+.check-box .box {
+    -fx-background-color: #0f3460;
+    -fx-border-color: #e94560;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #e94560;
+}
+
+.radio-button .radio {
+    -fx-border-color: #e94560;
+}
+
+.radio-button:selected .dot {
+    -fx-background-color: #e94560;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #16213e;
+    -fx-text-fill: #a0a0c0;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #0f3460;
+    -fx-text-fill: #e94560;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #16213e;
+}
+
+.alert-info {
+    -fx-background-color: #16213e;
+}
+
+.login-box {
+    -fx-background-color: #16213e;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: #e94560;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(233,69,96,0.3), 20, 0, 0, 8);
+    -fx-padding: 40;
+}
+
+.gym-logo {
+    -fx-text-fill: #e94560;
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+}

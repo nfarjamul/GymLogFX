@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gymlogfx.controller.RoutinesController"
+            styleClass="main-container">
+
+    <top>
+        <VBox spacing="4" styleClass="main-container">
+            <padding><Insets top="24" right="24" bottom="12" left="24"/></padding>
+            <Label text="📋 Routine Builder" styleClass="title-label"/>
+            <Label text="Create and manage custom workout routines"
+                   styleClass="subtitle-label"/>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="20" styleClass="main-container">
+            <padding><Insets top="0" right="24" bottom="24" left="24"/></padding>
+
+            <!-- Routines List Panel -->
+            <VBox styleClass="card" spacing="12" prefWidth="300">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="My Routines" styleClass="title-label"
+                           style="-fx-font-size: 16px;" HBox.hgrow="ALWAYS"/>
+                    <Button text="+ New" styleClass="primary-button"
+                            onAction="#createNewRoutine"/>
+                </HBox>
+
+                <ListView fx:id="routinesList" VBox.vgrow="ALWAYS"
+                          onMouseClicked="#onRoutineSelected"/>
+
+                <HBox spacing="8">
+                    <Button text="✏ Edit" styleClass="secondary-button"
+                            HBox.hgrow="ALWAYS" onAction="#editRoutine"/>
+                    <Button text="🗑" styleClass="secondary-button"
+                            onAction="#deleteRoutine"/>
+                </HBox>
+            </VBox>
+
+            <!-- Routine Detail Panel -->
+            <VBox styleClass="card" spacing="16" HBox.hgrow="ALWAYS">
+                <Label fx:id="routineNameLabel" text="Select a routine"
+                       styleClass="title-label" style="-fx-font-size: 18px;"/>
+                <Label fx:id="routineDescLabel" text=""
+                       styleClass="subtitle-label"/>
+
+                <Separator/>
+
+                <!-- Add Exercise to Routine -->
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="Add Exercise:" styleClass="subtitle-label"/>
+                    <ComboBox fx:id="addExerciseCombo"
+                              promptText="Choose exercise"
+                              prefWidth="200" HBox.hgrow="ALWAYS"/>
+                    <Button text="+ Add" styleClass="primary-button"
+                            onAction="#addExerciseToRoutine"/>
+                </HBox>
+
+                <!-- Exercises in Routine -->
+                <Label text="Exercises in Routine:" styleClass="subtitle-label"/>
+                <ListView fx:id="routineExercisesList"
+                          VBox.vgrow="ALWAYS"/>
+
+                <Button text="▶ Start Workout" styleClass="primary-button"
+                        prefWidth="200" onAction="#startWorkout"/>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

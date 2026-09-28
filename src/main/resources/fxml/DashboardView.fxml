@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gymlogfx.controller.DashboardController"
+            fitToWidth="true" fitToHeight="false"
+            styleClass="main-container">
+    <VBox spacing="24" styleClass="main-container">
+        <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="16">
+            <VBox spacing="4">
+                <Label fx:id="welcomeLabel" text="Good Morning, Athlete!"
+                       styleClass="title-label"/>
+                <Label fx:id="dateLabel" text=""
+                       styleClass="subtitle-label"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="⟳ Refresh Quotes" styleClass="secondary-button"
+                    onAction="#refreshQuotes"/>
+        </HBox>
+
+        <!-- Stats Row -->
+        <HBox spacing="16">
+            <!-- Total Workouts Card -->
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="8">
+                <Label text="Total Workouts" styleClass="subtitle-label"/>
+                <Label fx:id="totalWorkoutsLabel" text="0"
+                       style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #e94560;"/>
+                <Label text="sessions logged" styleClass="subtitle-label"/>
+            </VBox>
+
+            <!-- This Week Card -->
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="8">
+                <Label text="This Week" styleClass="subtitle-label"/>
+                <Label fx:id="thisWeekLabel" text="0"
+                       style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #4caf50;"/>
+                <Label text="workouts" styleClass="subtitle-label"/>
+            </VBox>
+
+            <!-- Best Lift Card -->
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="8">
+                <Label text="Personal Best" styleClass="subtitle-label"/>
+                <Label fx:id="bestLiftLabel" text="0 kg"
+                       style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #ff9800;"/>
+                <Label text="heaviest lift" styleClass="subtitle-label"/>
+            </VBox>
+
+            <!-- Volume Card -->
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="8">
+                <Label text="Total Volume" styleClass="subtitle-label"/>
+                <Label fx:id="totalVolumeLabel" text="0 kg"
+                       style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #9c27b0;"/>
+                <Label text="lifted" styleClass="subtitle-label"/>
+            </VBox>
+        </HBox>
+
+        <!-- API Quotes Section -->
+        <VBox styleClass="card" spacing="12">
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label text="⚡ Motivational Quotes" styleClass="title-label"
+                       style="-fx-font-size: 18px;"/>
+                <ProgressIndicator fx:id="quoteLoadingIndicator"
+                                   prefWidth="20" prefHeight="20"
+                                   visible="false"/>
+                <Label fx:id="apiStatusLabel" text="Fetching from API..."
+                       styleClass="subtitle-label" visible="false"/>
+            </HBox>
+            <ListView fx:id="quotesList" prefHeight="140"
+                      styleClass="list-view"/>
+        </VBox>
+
+        <!-- Recent Workouts -->
+        <VBox styleClass="card" spacing="12">
+            <Label text="📅 Recent Activity" styleClass="title-label"
+                   style="-fx-font-size: 18px;"/>
+            <TableView fx:id="recentWorkoutsTable" prefHeight="200"
+                       styleClass="table-view">
+                <columns>
+                    <TableColumn fx:id="colDate" text="Date" prefWidth="100"/>
+                    <TableColumn fx:id="colExercise" text="Exercise" prefWidth="160"/>
+                    <TableColumn fx:id="colWeight" text="Weight (kg)" prefWidth="100"/>
+                    <TableColumn fx:id="colSets" text="Sets" prefWidth="60"/>
+                    <TableColumn fx:id="colReps" text="Reps" prefWidth="60"/>
+                    <TableColumn fx:id="colVolume" text="Volume" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </VBox>
+</ScrollPane>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gymlogfx.evaluator.EvaluatorDemoController"
+      spacing="0" styleClass="main-container">
+
+    <!-- MenuBar - satisfies MenuBar requirement -->
+    <MenuBar fx:id="menuBar" styleClass="menu-bar">
+        <Menu text="File">
+            <MenuItem text="New" onAction="#menuNew"/>
+            <MenuItem text="Open" onAction="#menuOpen"/>
+            <SeparatorMenuItem/>
+            <MenuItem text="Exit" onAction="#menuExit"/>
+        </Menu>
+        <Menu text="View">
+            <MenuItem text="Toggle Theme" onAction="#menuToggleTheme"/>
+        </Menu>
+        <Menu text="Help">
+            <MenuItem text="About" onAction="#menuAbout"/>
+        </Menu>
+    </MenuBar>
+
+    <!-- Header -->
+    <VBox spacing="4" styleClass="main-container">
+        <padding><Insets top="16" right="24" bottom="8" left="24"/></padding>
+        <!-- RUBRIC: Label saying "Welcome to JavaFX!" (window 400x300 equivalent) -->
+        <Label text="Welcome to JavaFX!" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #e94560;"/>
+        <Label text="⭐ Evaluator Demo - All UI Components Showcase" styleClass="subtitle-label"/>
+    </VBox>
+
+    <!-- Main TabPane -->
+    <TabPane VBox.vgrow="ALWAYS" styleClass="tab-pane">
+
+        <!-- TAB 1: Layout Panes & Navigation -->
+        <Tab text="📏 Layout Panes" closable="false">
+            <ScrollPane fitToWidth="true">
+                <VBox spacing="16">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+
+                    <!-- RUBRIC: HBox with 3-4 buttons -->
+                    <VBox styleClass="card" spacing="8">
+                        <Label text="HBox Layout (horizontal)" styleClass="accent-label"/>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <Button text="Button A" styleClass="primary-button"/>
+                            <Button text="Button B" styleClass="secondary-button"/>
+                            <Button text="Button C" styleClass="primary-button"/>
+                            <Button text="Button D" styleClass="secondary-button"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- RUBRIC: VBox with 3-4 buttons -->
+                    <VBox styleClass="card" spacing="8">
+                        <Label text="VBox Layout (vertical)" styleClass="accent-label"/>
+                        <VBox spacing="8" maxWidth="200">
+                            <Button text="Alpha" styleClass="primary-button" prefWidth="180"/>
+                            <Button text="Beta" styleClass="secondary-button" prefWidth="180"/>
+                            <Button text="Gamma" styleClass="primary-button" prefWidth="180"/>
+                            <Button text="Delta" styleClass="secondary-button" prefWidth="180"/>
+                        </VBox>
+                    </VBox>
+
+                    <!-- RUBRIC: FlowPane with 3-4 buttons -->
+                    <VBox styleClass="card" spacing="8">
+                        <Label text="FlowPane Layout (wrapping)" styleClass="accent-label"/>
+                        <FlowPane hgap="10" vgap="10">
+                            <Button text="Flow-1" styleClass="primary-button"/>
+                            <Button text="Flow-2" styleClass="secondary-button"/>
+                            <Button text="Flow-3" styleClass="primary-button"/>
+                            <Button text="Flow-4" styleClass="secondary-button"/>
+                        </FlowPane>
+                    </VBox>
+
+                    <!-- RUBRIC: StackPane with buttons -->
+                    <VBox styleClass="card" spacing="8">
+                        <Label text="StackPane Layout (stacked)" styleClass="accent-label"/>
+                        <StackPane prefHeight="80" prefWidth="300">
+                            <Button text="Back Layer" style="-fx-opacity: 0.4;"
+                                    styleClass="primary-button" prefWidth="280" prefHeight="60"/>
+                            <Button text="Front Layer (Stacked)" styleClass="secondary-button"/>
+                        </StackPane>
+                    </VBox>
+
+                    <!-- RUBRIC: BorderPane with buttons -->
+                    <VBox styleClass="card" spacing="8">
+                        <Label text="BorderPane Layout" styleClass="accent-label"/>
+                        <BorderPane prefHeight="100" style="-fx-background-color: #0f3460; -fx-background-radius: 8;">
+                            <top><Button text="Top" BorderPane.alignment="CENTER" style="-fx-background-color: #e94560; -fx-text-fill: white;"/></top>
+                            <left><Button text="Left" BorderPane.alignment="CENTER" style="-fx-background-color: #4caf50; -fx-text-fill: white;"/></left>
+                            <center><Button text="Center" style="-fx-background-color: #ff9800; -fx-text-fill: white;"/></center>
+                            <right><Button text="Right" BorderPane.alignment="CENTER" style="-fx-background-color: #9c27b0; -fx-text-fill: white;"/></right>
+                            <bottom><Button text="Bottom" BorderPane.alignment="CENTER" style="-fx-background-color: #00bcd4; -fx-text-fill: white;"/></bottom>
+                        </BorderPane>
+                    </VBox>
+
+                    <!-- RUBRIC: Page navigation - TextField + Switch button -->
+                    <VBox styleClass="card" spacing="12">
+                        <Label text="FXML Page Navigation (Pass Data Between Pages)" styleClass="accent-label"/>
+                        <Label text="Enter your name to pass to Page 2:" styleClass="subtitle-label"/>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <TextField fx:id="navTextField"
+                                       promptText="Type something to pass..."
+                                       styleClass="text-field-dark"
+                                       prefWidth="280"
+                                       onAction="#handleNavTextEnter"/>
+                            <Button text="Go to Page 2 →" styleClass="primary-button"
+                                    onAction="#goToPage2"/>
+                        </HBox>
+                        <Label text="(Press Enter in field or click button to navigate)"
+                               styleClass="subtitle-label" style="-fx-font-size: 11px;"/>
+                    </VBox>
+
+                    <!-- RUBRIC: Button with FXML onAction + Button with Java setOnAction -->
+                    <VBox styleClass="card" spacing="12">
+                        <Label text="Event Handling" styleClass="accent-label"/>
+                        <HBox spacing="16" alignment="CENTER_LEFT">
+                            <Button text="Click Me (FXML onAction)" styleClass="primary-button"
+                                    onAction="#handleFxmlButton"/>
+                            <Button fx:id="javaCodeButton" text="Click Me (Java setOnAction)"
+                                    styleClass="secondary-button"/>
+                        </HBox>
+                        <Label fx:id="clickedLabel" text="(waiting for click)"
+                               styleClass="subtitle-label"
+                               style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <!-- TAB 2: Data Display Controls -->
+        <Tab text="📊 Data Controls" closable="false">
+            <ScrollPane fitToWidth="true">
+                <VBox spacing="16">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+
+                    <!-- RUBRIC: TableView with Person model -->
+                    <VBox styleClass="card" spacing="8">
+                        <Label text="TableView with Person ObservableList" styleClass="accent-label"/>
+                        <TableView fx:id="personTable" prefHeight="180" styleClass="table-view">
+                            <columns>
+                                <TableColumn fx:id="colFirstName" text="First Name" prefWidth="130"/>
+                                <TableColumn fx:id="colLastName" text="Last Name" prefWidth="130"/>
+                                <TableColumn fx:id="colAge" text="Age" prefWidth="70"/>
+                                <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+
+                    <!-- RUBRIC: ListView with fruit names + TreeView with categories -->
+                    <HBox spacing="16">
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="ListView - Fruits" styleClass="accent-label"/>
+                            <ListView fx:id="fruitListView" prefHeight="160"
+                                      onMouseClicked="#onFruitSelected"/>
+                            <Label text="Selected Fruit:" styleClass="subtitle-label"/>
+                            <Label fx:id="selectedFruitLabel" text="(none selected)"
+                                   styleClass="accent-label" style="-fx-font-size: 16px;"/>
+                        </VBox>
+
+                        <!-- RUBRIC: TreeView with categories -->
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="TreeView - Categories" styleClass="accent-label"/>
+                            <TreeView fx:id="categoryTreeView" prefHeight="160"
+                                      onMouseClicked="#onTreeNodeSelected"/>
+                            <Label text="Selected Node:" styleClass="subtitle-label"/>
+                            <Label fx:id="selectedTreeLabel" text="(none selected)"
+                                   styleClass="accent-label" style="-fx-font-size: 16px;"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <!-- TAB 3: Selection & Input Controls -->
+        <Tab text="🎮 Input Controls" closable="false">
+            <ScrollPane fitToWidth="true">
+                <VBox spacing="16">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+
+                    <HBox spacing="16">
+                        <!-- RUBRIC: PasswordField with show/hide -->
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="PasswordField" styleClass="accent-label"/>
+                            <PasswordField fx:id="passwordDemoField"
+                                           promptText="Enter password"
+                                           styleClass="text-field-dark"/>
+                            <TextField fx:id="passwordVisible"
+                                       promptText="(hidden)"
+                                       styleClass="text-field-dark"
+                                       visible="false" managed="false"/>
+                            <Button text="👁 Show Password" styleClass="secondary-button"
+                                    onAction="#togglePasswordVisibility"/>
+                        </VBox>
+
+                        <!-- RUBRIC: ChoiceBox with color changer -->
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="ChoiceBox - Color Picker" styleClass="accent-label"/>
+                            <ChoiceBox fx:id="colorChoiceBox" prefWidth="200"
+                                       onAction="#onColorChoiceSelected"/>
+                            <Label text="Window background changes with selection"
+                                   styleClass="subtitle-label"
+                                   style="-fx-font-size: 11px; -fx-wrap-text: true;"/>
+                        </VBox>
+                    </HBox>
+
+                    <HBox spacing="16">
+                        <!-- RUBRIC: RadioButtons Gender -->
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="RadioButtons - Gender" styleClass="accent-label"/>
+                            <ToggleGroup fx:id="genderGroup"/>
+                            <HBox spacing="16">
+                                <RadioButton text="Male" toggleGroup="$genderGroup"
+                                             onAction="#onGenderSelected"
+                                             style="-fx-text-fill: #a0a0c0;"/>
+                                <RadioButton text="Female" toggleGroup="$genderGroup"
+                                             onAction="#onGenderSelected"
+                                             style="-fx-text-fill: #a0a0c0;"/>
+                                <RadioButton text="Other" toggleGroup="$genderGroup"
+                                             onAction="#onGenderSelected"
+                                             style="-fx-text-fill: #a0a0c0;"/>
+                            </HBox>
+                            <Label text="Selected: " styleClass="subtitle-label"/>
+                            <Label fx:id="genderLabel" text="(none)"
+                                   styleClass="accent-label"/>
+                        </VBox>
+
+                        <!-- RUBRIC: RadioButtons Fitness Level: Beginner, Intermediate, Expert -->
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="RadioButtons - Fitness Level" styleClass="accent-label"/>
+                            <ToggleGroup fx:id="fitnessGroup"/>
+                            <HBox spacing="12">
+                                <RadioButton text="Beginner" toggleGroup="$fitnessGroup"
+                                             onAction="#onFitnessSelected"
+                                             selected="true"
+                                             style="-fx-text-fill: #a0a0c0;"/>
+                                <RadioButton text="Intermediate" toggleGroup="$fitnessGroup"
+                                             onAction="#onFitnessSelected"
+                                             style="-fx-text-fill: #a0a0c0;"/>
+                                <RadioButton text="Expert" toggleGroup="$fitnessGroup"
+                                             onAction="#onFitnessSelected"
+                                             style="-fx-text-fill: #a0a0c0;"/>
+                            </HBox>
+                            <Label text="Level: " styleClass="subtitle-label"/>
+                            <Label fx:id="fitnessLabel" text="Beginner"
+                                   styleClass="accent-label"/>
+                        </VBox>
+                    </HBox>
+
+                    <HBox spacing="16">
+                        <!-- RUBRIC: 3 CheckBoxes: Reading, Gaming, Traveling -->
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="CheckBoxes - Hobbies" styleClass="accent-label"/>
+                            <CheckBox fx:id="readingCheck" text="Reading"
+                                      style="-fx-text-fill: #a0a0c0;"/>
+                            <CheckBox fx:id="gamingCheck" text="Gaming"
+                                      style="-fx-text-fill: #a0a0c0;"/>
+                            <CheckBox fx:id="travelingCheck" text="Traveling"
+                                      style="-fx-text-fill: #a0a0c0;"/>
+                            <Button text="Submit Hobbies" styleClass="primary-button"
+                                    onAction="#submitHobbies"/>
+                            <Label fx:id="hobbiesLabel" text="Selected: (none)"
+                                   styleClass="subtitle-label" wrapText="true"/>
+                        </VBox>
+
+                        <!-- RUBRIC: ComboBox for countries + DatePicker for DOB -->
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="ComboBox - Countries" styleClass="accent-label"/>
+                            <ComboBox fx:id="countryComboBox" prefWidth="220"
+                                      editable="true" promptText="Select or type country"/>
+                            <Label text="DatePicker - Date of Birth" styleClass="accent-label"
+                                   style="-fx-padding: 8 0 0 0;"/>
+                            <DatePicker fx:id="dobPicker" prefWidth="220"
+                                        onAction="#onDobSelected"
+                                        promptText="Select DOB"/>
+                            <Label fx:id="dobLabel" text="DOB: (not set)"
+                                   styleClass="subtitle-label"/>
+                        </VBox>
+                    </HBox>
+
+                    <HBox spacing="16">
+                        <!-- RUBRIC: ColorPicker that sets text color of a Label -->
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="ColorPicker" styleClass="accent-label"/>
+                            <ColorPicker fx:id="textColorPicker" prefWidth="220"
+                                         onAction="#onColorPicked"/>
+                            <Label fx:id="colorTargetLabel"
+                                   text="This label changes color!"
+                                   style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                        </VBox>
+
+                        <!-- RUBRIC: Spinner (1-10) with display button -->
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="Spinner (1-10 Quantity)" styleClass="accent-label"/>
+                            <Spinner fx:id="quantitySpinner" min="1" max="10"
+                                     initialValue="1" prefWidth="120" editable="true"/>
+                            <Button text="Show Quantity" styleClass="secondary-button"
+                                    onAction="#showQuantity"/>
+                            <Label fx:id="quantityLabel" text="Quantity: 1"
+                                   styleClass="subtitle-label"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <!-- TAB 4: Advanced Media & Tracking -->
+        <Tab text="📡 Advanced" closable="false">
+            <ScrollPane fitToWidth="true">
+                <VBox spacing="16">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+
+                    <HBox spacing="16">
+                        <!-- RUBRIC: Slider for font size control -->
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="Slider - Font Size Control" styleClass="accent-label"/>
+                            <Slider fx:id="fontSlider" min="10" max="36"
+                                    value="16" showTickLabels="true"
+                                    showTickMarks="true" blockIncrement="2"/>
+                            <Label fx:id="sliderTargetLabel"
+                                   text="Drag slider to resize me!"
+                                   style="-fx-font-size: 16px;"/>
+                        </VBox>
+
+                        <!-- RUBRIC: TextArea with Clear button -->
+                        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="TextArea with Clear" styleClass="accent-label"/>
+                            <TextArea fx:id="noteTextArea"
+                                      promptText="Write a short note here..."
+                                      prefHeight="100" wrapText="true"
+                                      styleClass="text-field-dark"/>
+                            <Button text="Clear" styleClass="secondary-button"
+                                    onAction="#clearNoteArea"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- RUBRIC: Accumulate button with TextField, ProgressBar, currentSum Label -->
+                    <VBox styleClass="card" spacing="12">
+                        <Label text="Accumulate Button + ProgressBar" styleClass="accent-label"/>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <Label text="Target presses:" styleClass="subtitle-label"/>
+                            <TextField fx:id="accumulateTarget"
+                                       text="5"
+                                       styleClass="text-field-dark"
+                                       prefWidth="80"/>
+                            <Button text="Accumulate +1" styleClass="primary-button"
+                                    onAction="#handleAccumulate"/>
+                            <Button text="Reset" styleClass="secondary-button"
+                                    onAction="#resetAccumulate"/>
+                        </HBox>
+                        <ProgressBar fx:id="accumulateProgressBar"
+                                     progress="0.0" prefWidth="400" prefHeight="24"/>
+                        <Label fx:id="accumulateSumLabel"
+                               text="Current Sum: 0 / Target: 5"
+                               styleClass="subtitle-label"/>
+                    </VBox>
+
+                    <!-- RUBRIC: ImageView with Change Image and Browse buttons -->
+                    <VBox styleClass="card" spacing="12">
+                        <Label text="ImageView + FileChooser" styleClass="accent-label"/>
+                        <HBox spacing="16" alignment="CENTER_LEFT">
+                            <ImageView fx:id="demoImageView"
+                                       fitWidth="200" fitHeight="150"
+                                       preserveRatio="true"
+                                       style="-fx-background-color: #0f3460;"/>
+                            <VBox spacing="12">
+                                <Button text="🖼 Change Image" styleClass="primary-button"
+                                        onAction="#changeImage"/>
+                                <Button text="📂 Browse Image" styleClass="secondary-button"
+                                        onAction="#browseImage"/>
+                                <Label fx:id="imageStatusLabel" text="No image loaded"
+                                       styleClass="subtitle-label"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- RUBRIC: Alert Dialog buttons: Information, Warning, Error -->
+                    <VBox styleClass="card" spacing="12">
+                        <Label text="Alert Dialogs" styleClass="accent-label"/>
+                        <HBox spacing="12">
+                            <Button text="ℹ️ Information Alert"
+                                    style="-fx-background-color: #2196f3; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 16;"
+                                    onAction="#showInfoAlert"/>
+                            <Button text="⚠️ Warning Alert"
+                                    style="-fx-background-color: #ff9800; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 16;"
+                                    onAction="#showWarningAlert"/>
+                            <Button text="❌ Error Alert"
+                                    style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 16;"
+                                    onAction="#showErrorAlert"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- API Demo section -->
+                    <VBox styleClass="card" spacing="12">
+                        <Label text="API + Threading Demo" styleClass="accent-label"/>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <Button text="Fetch Motivational Quotes" styleClass="primary-button"
+                                    onAction="#fetchQuotesDemo"/>
+                            <ProgressBar fx:id="apiProgressBar" progress="0"
+                                         prefWidth="200" visible="false"/>
+                            <Label fx:id="apiStatusDemoLabel" text=""
+                                   styleClass="subtitle-label"/>
+                        </HBox>
+                        <ListView fx:id="apiQuotesList" prefHeight="120"
+                                  styleClass="list-view"/>
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+    </TabPane>
+</VBox>
