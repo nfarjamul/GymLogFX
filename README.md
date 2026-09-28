@@ -1,6 +1,6 @@
 # GymLogFX 🏋️
 
-A comprehensive **JavaFX workout logger** desktop application for tracking gym sessions, visualizing progress, building routines, and evaluating fitness assessments — all backed by a local SQLite database.
+A comprehensive **JavaFX workout logger** desktop application for tracking gym sessions, visualizing progress, building routines, and evaluating fitness assessments - all backed by a local SQLite database.
 
 ---
 
@@ -198,29 +198,5 @@ Responses are parsed with **Gson** into model objects and cached in the local SQ
 
 Configure your RapidAPI key in `Settings` or via the `EXERCISEDB_API_KEY` environment variable.
 
----
 
-## Git History Simulation
 
-This repository includes a simulated multi-month git commit history (created with `--date` overrides) to demonstrate realistic development progression from project scaffolding through feature completion.
-
----
-
-## License
-
-MIT License — see [LICENSE](LICENSE) for details.
-
-```
-Copyright (c) 2024 GymLogFX Contributors
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-```
