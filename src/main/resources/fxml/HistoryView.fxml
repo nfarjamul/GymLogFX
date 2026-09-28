@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gymlogfx.controller.HistoryController"
+      spacing="20" styleClass="main-container">
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label text="📅 Workout History" styleClass="title-label"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="searchField"
+                   promptText="Search exercise..."
+                   styleClass="text-field-dark"
+                   prefWidth="200"
+                   onAction="#handleSearch"/>
+        <Button text="Search" styleClass="secondary-button" onAction="#handleSearch"/>
+        <Button text="Show All" styleClass="secondary-button" onAction="#showAll"/>
+    </HBox>
+
+    <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="12">
+        <Label text="All Logged Workouts" styleClass="title-label"
+               style="-fx-font-size: 16px;"/>
+
+        <TableView fx:id="historyTable" VBox.vgrow="ALWAYS"
+                   styleClass="table-view">
+            <columns>
+                <TableColumn fx:id="colDate" text="Date" prefWidth="110"/>
+                <TableColumn fx:id="colExercise" text="Exercise" prefWidth="160"/>
+                <TableColumn fx:id="colMuscle" text="Muscle Group" prefWidth="130"/>
+                <TableColumn fx:id="colWeight" text="Weight (kg)" prefWidth="100"/>
+                <TableColumn fx:id="colSets" text="Sets" prefWidth="60"/>
+                <TableColumn fx:id="colReps" text="Reps" prefWidth="60"/>
+                <TableColumn fx:id="colVolume" text="Volume" prefWidth="100"/>
+                <TableColumn fx:id="colNotes" text="Notes" prefWidth="180"/>
+            </columns>
+        </TableView>
+
+        <HBox spacing="12" alignment="CENTER_RIGHT">
+            <Label fx:id="totalEntriesLabel" text="Total entries: 0"
+                   styleClass="subtitle-label"/>
+            <Button text="Export CSV" styleClass="secondary-button"
+                    onAction="#exportCsv"/>
+            <Button text="Delete Selected" styleClass="secondary-button"
+                    onAction="#deleteSelected"/>
+        </HBox>
+    </VBox>
+</VBox>

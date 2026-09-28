@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gymlogfx.evaluator.EvaluatorPage2Controller"
+      spacing="24" styleClass="main-container">
+    <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+
+    <Label text="📄 Page 2 - Data Received!" styleClass="title-label"/>
+    <Label text="This page received data passed from Page 1" styleClass="subtitle-label"/>
+
+    <VBox styleClass="card" spacing="16">
+        <Label text="Text passed from Page 1:" styleClass="accent-label"/>
+        <Label fx:id="receivedDataLabel"
+               text="(nothing passed yet)"
+               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #4caf50;"
+               wrapText="true"/>
+    </VBox>
+
+    <VBox styleClass="card" spacing="12">
+        <Label text="About This Demo" styleClass="accent-label"/>
+        <Label wrapText="true" styleClass="subtitle-label"
+               text="This is Page 2 of the FXML navigation demo. The text you entered on Page 1 was passed through the controller using the setData() method before loading this scene. This demonstrates inter-controller communication in JavaFX."/>
+    </VBox>
+
+    <Button text="← Back to Page 1" styleClass="primary-button"
+            onAction="#goBack"/>
+</VBox>

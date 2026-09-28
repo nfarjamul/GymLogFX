@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gymlogfx.controller.ChartsController"
+      spacing="20" styleClass="main-container">
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label text="📊 Progress Charts" styleClass="title-label"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Exercise:" styleClass="subtitle-label"/>
+        <ComboBox fx:id="exerciseSelector" promptText="Select Exercise"
+                  prefWidth="200" onAction="#updateCharts"/>
+    </HBox>
+
+    <TabPane styleClass="tab-pane" VBox.vgrow="ALWAYS">
+        <Tab text="Weight Progress" closable="false">
+            <LineChart fx:id="weightChart"
+                       title="Weight Progression (Progressive Overload)"
+                       animated="true">
+                <xAxis><CategoryAxis label="Date"/></xAxis>
+                <yAxis><NumberAxis label="Weight (kg)"/></yAxis>
+            </LineChart>
+        </Tab>
+
+        <Tab text="Volume" closable="false">
+            <BarChart fx:id="volumeChart"
+                      title="Total Volume per Session"
+                      animated="true">
+                <xAxis><CategoryAxis label="Date"/></xAxis>
+                <yAxis><NumberAxis label="Volume (kg x reps)"/></yAxis>
+            </BarChart>
+        </Tab>
+
+        <Tab text="Muscle Groups" closable="false">
+            <PieChart fx:id="muscleGroupChart"
+                      title="Workout Distribution by Muscle Group"
+                      animated="true"
+                      labelsVisible="true"/>
+        </Tab>
+    </TabPane>
+</VBox>

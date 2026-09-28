@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.gymlogfx.controller.LoginController"
+           prefHeight="650" prefWidth="900"
+           styleClass="main-container">
+
+    <!-- Background gradient overlay -->
+    <VBox alignment="CENTER" spacing="0">
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <!-- Login Card -->
+        <VBox alignment="CENTER" spacing="20" styleClass="login-box"
+              maxWidth="420" maxHeight="520">
+
+            <!-- Logo -->
+            <Label text="🏥 GymLogFX" styleClass="gym-logo"/>
+            <Label text="Your Personal Workout Intelligence" styleClass="subtitle-label"/>
+
+            <Separator prefWidth="300"/>
+
+            <!-- Username -->
+            <VBox spacing="6" maxWidth="320">
+                <Label text="Username" styleClass="subtitle-label"/>
+                <TextField fx:id="usernameField"
+                           promptText="Enter username"
+                           styleClass="text-field-dark"
+                           prefWidth="320"/>
+            </VBox>
+
+            <!-- Password -->
+            <VBox spacing="6" maxWidth="320">
+                <Label text="Password" styleClass="subtitle-label"/>
+                <PasswordField fx:id="passwordField"
+                              promptText="Enter password"
+                              styleClass="text-field-dark"
+                              prefWidth="320"
+                              onAction="#handleLogin"/>
+            </VBox>
+
+            <!-- Error label -->
+            <Label fx:id="errorLabel" text="" style="-fx-text-fill: #e94560;"/>
+
+            <!-- Login Button -->
+            <Button fx:id="loginButton" text="LOGIN"
+                    styleClass="primary-button"
+                    prefWidth="320" prefHeight="44"
+                    onAction="#handleLogin"/>
+
+            <!-- Register link -->
+            <HBox alignment="CENTER" spacing="8">
+                <Label text="New to GymLogFX?" styleClass="subtitle-label"/>
+                <Hyperlink text="Create Account" onAction="#showRegister"
+                           style="-fx-text-fill: #e94560;"/>
+            </HBox>
+
+            <!-- Demo credentials hint -->
+            <Label text="Demo: demo / password123"
+                   style="-fx-text-fill: #606080; -fx-font-size: 11px;"/>
+
+            <!-- Dark mode toggle -->
+            <HBox alignment="CENTER" spacing="8">
+                <Label text="🌙 Dark Mode" styleClass="subtitle-label"/>
+                <ToggleButton fx:id="themeToggle" text="ON"
+                              selected="true"
+                              onAction="#toggleTheme"
+                              style="-fx-font-size: 12px;"/>
+            </HBox>
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS"/>
+    </VBox>
+</StackPane>

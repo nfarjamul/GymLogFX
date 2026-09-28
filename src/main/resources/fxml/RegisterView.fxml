@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.gymlogfx.controller.RegisterController"
+           prefHeight="650" prefWidth="900"
+           styleClass="main-container">
+
+    <VBox alignment="CENTER" spacing="0">
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <VBox alignment="CENTER" spacing="16" styleClass="login-box"
+              maxWidth="460" maxHeight="620">
+
+            <Label text="🏥 Create Account" styleClass="gym-logo"
+                   style="-fx-font-size: 28px;"/>
+            <Label text="Join GymLogFX today" styleClass="subtitle-label"/>
+
+            <Separator prefWidth="360"/>
+
+            <HBox spacing="12">
+                <VBox spacing="4">
+                    <Label text="Username" styleClass="subtitle-label"/>
+                    <TextField fx:id="usernameField" promptText="Username"
+                               styleClass="text-field-dark" prefWidth="170"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="Email" styleClass="subtitle-label"/>
+                    <TextField fx:id="emailField" promptText="Email"
+                               styleClass="text-field-dark" prefWidth="170"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="12">
+                <VBox spacing="4">
+                    <Label text="Password" styleClass="subtitle-label"/>
+                    <PasswordField fx:id="passwordField" promptText="Password"
+                                  styleClass="text-field-dark" prefWidth="170"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="Confirm Password" styleClass="subtitle-label"/>
+                    <PasswordField fx:id="confirmPasswordField" promptText="Confirm"
+                                  styleClass="text-field-dark" prefWidth="170"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="4" maxWidth="360">
+                <Label text="Fitness Level" styleClass="subtitle-label"/>
+                <HBox spacing="16">
+                    <RadioButton fx:id="beginnerRB" text="Beginner" selected="true"
+                                 style="-fx-text-fill: #a0a0c0;"/>
+                    <RadioButton fx:id="intermediateRB" text="Intermediate"
+                                 style="-fx-text-fill: #a0a0c0;"/>
+                    <RadioButton fx:id="expertRB" text="Expert"
+                                 style="-fx-text-fill: #a0a0c0;"/>
+                </HBox>
+            </VBox>
+
+            <Label fx:id="errorLabel" text="" style="-fx-text-fill: #e94560;"/>
+            <Label fx:id="successLabel" text="" style="-fx-text-fill: #4caf50;"/>
+
+            <Button text="CREATE ACCOUNT"
+                    styleClass="primary-button"
+                    prefWidth="360" prefHeight="44"
+                    onAction="#handleRegister"/>
+
+            <HBox alignment="CENTER" spacing="8">
+                <Label text="Already have an account?" styleClass="subtitle-label"/>
+                <Hyperlink text="Sign In" onAction="#goToLogin"
+                           style="-fx-text-fill: #e94560;"/>
+            </HBox>
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS"/>
+    </VBox>
+</StackPane>
